@@ -11,7 +11,7 @@ Please ensure that you have **updated pip** to the latest version before install
 
 You can install the module using Python Package Index using the below command.
 
-    pip install https://github.com/WaltWh/w2n/tarball/1.2
+    pip install https://github.com/WaltWh/w2n/tarball/v1.2
 
 (Note that you can also put it in your requirements.txt file that way. Just drop that whole URL in as its own line.)
 

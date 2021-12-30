@@ -3,7 +3,7 @@ import re
 from setuptools import setup
 
 version = ""
-with open("discord/__init__.py") as f:
+with open("w2n/__init__.py") as f:
     search = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE)
 
     if search is not None:
