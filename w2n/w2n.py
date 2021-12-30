@@ -30,7 +30,33 @@ NUMBERS_ENGLISH = {
     'point': '.'
 }
 
-SECTION_WORDS = ['quintillion', 'quadrillion', 'trillion', 'billion', 'million', 'thousand']
+SECTION_WORDS = ['quinvigintillion',
+                 'quattorvigintillion',
+                 'trevigintillion',
+                 'duovigintillion',
+                 'unvigintillion',
+                 'vigintillion',
+                 'novemdecillion',
+                 'octodecillion',
+                 'septemdecillion',
+                 'sexdecillion',
+                 'quindecillion',
+                 'quattordecillion',
+                 'tredecillion',
+                 'duodecillion',
+                 'undecillion',
+                 'decillion',
+                 'nonillion',
+                 'octillion',
+                 'septillion',
+                 'sextillion',
+                 'quintillion',
+                 'quadrillion',
+                 'trillion',
+                 'billion',
+                 'million',
+                 'thousand']
+
 ALL_SEPARATORS = SECTION_WORDS + ['point']
 NUMBER_WORDS = list(NUMBERS_ENGLISH.keys()) + SECTION_WORDS + ['hundred']
 NUMBER_SAFE_WORDS = NUMBER_WORDS + ['and', '&']
@@ -39,7 +65,7 @@ DECIMAL_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 
 
 def _number_formation(number_strings):
     """
-    function to form numeric multipliers for million, billion, thousand etc.
+    function to form numeric multipliers for millions, billions, thousands etc.
     input: list of strings
     return value: integer
     """
@@ -56,14 +82,14 @@ def _number_formation(number_strings):
 
 def _get_decimal_sum(decimal_digit_words):
     """
-    function to convert post decimal digit words to numerial digits
+    function to convert post decimal digit words to numerical digits
     input: list of strings
     output: double
     """
     decimal_number_str = []
     for dec_word in decimal_digit_words:
         if dec_word not in DECIMAL_WORDS:
-            return 0
+            return 0  # TODO this is dumb
         else:
             decimal_number_str.append(NUMBERS_ENGLISH[dec_word])
     final_decimal_string = '0.' + ''.join(map(str, decimal_number_str))
@@ -140,7 +166,7 @@ def _validate_clean_words(clean_words):
         raise ValueError(
             "No number words were found in the string.")
 
-        # Error if user enters million, billion, thousand or decimal point twice
+    # Error if user enters 'million', 'billion', 'thousand' or 'point' twice
     if clean_words.count('thousand') > 1 or clean_words.count('million') > 1 or clean_words.count(
             'billion') > 1 or clean_words.count('point') > 1:
         raise ValueError(
@@ -150,8 +176,7 @@ def _validate_clean_words(clean_words):
     sorted_seps = sorted(separators, key=lambda i: ALL_SEPARATORS.index(i))
 
     if sorted_seps != separators:
-        raise ValueError(
-            "Malformed number! Something is out of order here.")
+        raise ValueError("Malformed number! Something is out of order here.")
 
 
 def _clean_words_to_num(clean_words):
